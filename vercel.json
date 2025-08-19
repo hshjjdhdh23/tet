@@ -11,13 +11,7 @@
     }
   ],
   "routes": [
-    {
-      "src": "/textsms",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
-    }
+    { "src": "^/textsms", "dest": "/server.js" },
+    { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
