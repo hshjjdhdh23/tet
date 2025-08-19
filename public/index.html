@@ -11,7 +11,7 @@
       status.innerHTML = "⏳ Sending SMS...";
 
       try {
-        const res = await fetch(`/textsms?n=${encodeURIComponent(number)}&t=${encodeURIComponent(text)}`);
+        const res = await fetch(window.location.origin + `/textsms?n=${encodeURIComponent(number)}&t=${encodeURIComponent(text)}`);
         const data = await res.json();
         if (data.success) {
           status.innerHTML = "✅ SMS Sent: " + data.data.message;
