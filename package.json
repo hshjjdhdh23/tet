@@ -1,8 +1,18 @@
 {
   "name": "free-sms",
   "version": "1.0.0",
+  "description": "Free SMS Sender deployed on Vercel",
+  "main": "api/textsms.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "axios": "^1.7.0",
-    "qs": "^6.12.0"
+    "@types/node": "^22.13.11",
+    "axios": "^1.11.0",
+    "express": "^5.1.0",
+    "qs": "^6.14.0"
   }
 }
