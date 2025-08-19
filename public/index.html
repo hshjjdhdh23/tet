@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free SMS Sender</title>
+  <script>
+    async function sendSMS() {
+      const number = document.getElementById('number').value;
+      const text = document.getElementById('text').value;
+      const status = document.getElementById('status');
+      status.innerHTML = "⏳ Sending SMS...";
+
+      try {
+        const res = await fetch(`/textsms?n=${encodeURIComponent(number)}&t=${encodeURIComponent(text)}`);
+        const data = await res.json();
+        if (data.success) {
+          status.innerHTML = "✅ SMS Sent: " + data.data.message;
+        } else {
+          status.innerHTML = "❌ Error: " + (data.error || data.message);
+        }
+      } catch (err) {
+        status.innerHTML = "⚠️ Failed: " + err.message;
+      }
+    }
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f7f9fc; }
+    h1 { color: #333; }
+    input, textarea { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ccc; border-radius: 6px; }
+    button { padding: 10px 20px; background: #28a745; border: none; color: white; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #218838; }
+    #status { margin-top: 15px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>📩 Free SMS Sender</h1>
+  <label>Phone Number:</label>
+  <input type="text" id="number" placeholder="09xxxxxxxxx" />
+  
+  <label>Message:</label>
+  <textarea id="text" rows="4" placeholder="Type your message here..."></textarea>
+  
+  <button onclick="sendSMS()">Send SMS</button>
+  <div id="status"></div>
+</body>
+</html>
